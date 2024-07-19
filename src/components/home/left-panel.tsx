@@ -1,26 +1,28 @@
-import { ListFilter, LogOut, MessageSquareDiff, Search, User } from "lucide-react";
+"use client";
+
+import { ListFilter, Search } from "lucide-react";
 import { Input } from "../ui/input";
+import { conversations } from "@/dummy-data/db";
 import Conversation from "./conversation";
-
-// this is dark mode code if its not worked it will be remove form my code
 import ThemeSwitch from "./theme-switch";
-
+import UserListDialog from "./user-list-dialog";
+import { UserButton } from "@clerk/nextjs";
 const LeftPanel = () => {
-	const conversations = [];
+	// const conversations = [];
 
 	return (
 		<div className='w-1/4 border-gray-600 border-r'>
 			<div className='sticky top-0 bg-left-panel z-10'>
 				{/* Header */}
 				<div className='flex justify-between bg-gray-primary p-3 items-center'>
-					<User size={24} />
+					<UserButton/>
 
 					<div className='flex items-center gap-3'>
-						<MessageSquareDiff size={20} /> {/* TODO: This line will be replaced with <UserListDialog /> */}
+						<UserListDialog/>
 						<ThemeSwitch /> 
 						
 						{/* this is also part of dark mode */}
-						<LogOut size={20} className='cursor-pointer' />
+						{/* <LogOut size={20} className='cursor-pointer' /> */}
 					</div>
 				</div>
 				<div className='p-3 flex items-center'>
@@ -42,11 +44,10 @@ const LeftPanel = () => {
 
 			{/* Chat List */}
 			<div className='my-3 flex flex-col gap-0 max-h-[80%] overflow-auto'>
-				{/* Conversations will go here*/}
+				{/* Conversations will go here */}
 
-				{conversations.map((conversation) => (
-
-					<conversation key={conversation._id} conversation={conversation} />
+				{conversations?.map((conversation) => (
+					<Conversation key={conversation._id} conversation={conversation} />
 				))}
 
 				{conversations?.length === 0 && (
