@@ -3,7 +3,7 @@ const nextConfig = {
 	images: {
 		remotePatterns: [
 			{ hostname: "colorless-meadowlark-221.convex.cloud" },
-			// { hostname: "oaidalleapiprodscus.blob.core.windows.net" },
+			{ hostname: "oaidalleapiprodscus.blob.core.windows.net" },
 		],
 	},
 };
